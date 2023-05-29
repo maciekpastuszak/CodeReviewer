@@ -10,9 +10,16 @@ You will receive a file's contents as text.
 Generate a code review for the file. Indicate what changes should be made to improve its style, performance, readibility and maintainability. If there are any reputable libraries that could be introduced to improve the code, suggest them. Be kind and constructive. For each suggested change, include line numbers to which you are referring.
 """
 
+filecontent = """
+def mystery(x,y):
+retunr x ** y
+"""
+
 messages = [
     {"role": "system", "content": PROMPT},
     {"role": "user", "content": f"Code review the following file: {filecontent}"},
 ]
 
-openai.ChatCompletion.create(model="gpt-4", messages=messages)
+res = openai.ChatCompletion.create(model="gpt-4", messages=messages)
+
+print(res["choices"][0]["message"])
