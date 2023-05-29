@@ -20,6 +20,6 @@ messages = [
     {"role": "user", "content": f"Code review the following file: {filecontent}"},
 ]
 
-res = openai.ChatCompletion.create(model="gpt-4", messages=messages)
+res = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=messages)
 
 print(res["choices"][0]["message"])
