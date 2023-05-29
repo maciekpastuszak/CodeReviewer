@@ -15,11 +15,13 @@ def mystery(x,y):
 retunr x ** y
 """
 
-messages = [
-    {"role": "system", "content": PROMPT},
-    {"role": "user", "content": f"Code review the following file: {filecontent}"},
-]
 
-res = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=messages)
+def make_code_review_req(filecontent, model):
+    messages = [
+        {"role": "system", "content": PROMPT},
+        {"role": "user", "content": f"Code review the following file: {filecontent}"},
+    ]
 
-print(res["choices"][0]["message"])
+    res = openai.ChatCompletion.create(model=model, messages=messages)
+
+    return res["choices"][0]["message"]
