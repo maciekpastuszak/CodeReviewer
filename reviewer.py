@@ -16,6 +16,13 @@ retunr x ** y
 """
 
 
+def code_review(file_path):
+    with open(file_path, "r") as file:
+        content = file.read()
+    generated_code_review = make_code_review_req(content, model)
+    print(generated_code_review)
+
+
 def make_code_review_req(filecontent, model):
     messages = [
         {"role": "system", "content": PROMPT},
@@ -25,3 +32,6 @@ def make_code_review_req(filecontent, model):
     res = openai.ChatCompletion.create(model=model, messages=messages)
 
     return res["choices"][0]["message"]
+
+
+code_review("tree.py", "gpt-3.5-turbo")
