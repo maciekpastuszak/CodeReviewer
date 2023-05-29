@@ -25,13 +25,15 @@ def make_code_review_req(filecontent, model):
 
     res = openai.ChatCompletion.create(model=model, messages=messages)
 
-    return res["choices"][0]["message"]
+    return res["choices"][0]["message"]["content"]
 
 
 def main():
-    parser = argparse.ArgumentParser(dexcription="Simple code reviewer for a file")
-    parser.add.argument("file")
-    code_review("tree.py", "gpt-3.5-turbo")
+    parser = argparse.ArgumentParser(description="Simple code reviewer for a file")
+    parser.add_argument("file")
+    parser.add_argument("--model", default="gpt-3.5-turbo")
+    args = parser.parse_args()
+    code_review(args.file, args.model)
 
 
 if __name__ == "__main__":
