@@ -10,13 +10,8 @@ You will receive a file's contents as text.
 Generate a code review for the file. Indicate what changes should be made to improve its style, performance, readibility and maintainability. If there are any reputable libraries that could be introduced to improve the code, suggest them. Be kind and constructive. For each suggested change, include line numbers to which you are referring.
 """
 
-filecontent = """
-def mystery(x,y):
-retunr x ** y
-"""
 
-
-def code_review(file_path):
+def code_review(file_path, model):
     with open(file_path, "r") as file:
         content = file.read()
     generated_code_review = make_code_review_req(content, model)
